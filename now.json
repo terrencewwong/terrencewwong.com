@@ -2,11 +2,11 @@
   "version": 2,
   "alias": ["terrencewwong.com"],
   "builds": [
-    { "src": "index.html", "use": "@now/static" },
     {
-      "src": "blog/package.json",
+      "src": "www/package.json",
       "use": "@now/static-build",
       "config": { "distDir": "public" }
     }
-  ]
+  ],
+  "routes": [{ "src": "/(.*)", "dest": "/www/$1" }]
 }
