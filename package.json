@@ -1,7 +1,7 @@
 {
   "private": true,
   "workspaces": [
-    "blog"
+    "www"
   ],
   "lint-staged": {
     "*.{js,html,json,md,mdx,scss,yaml}": [

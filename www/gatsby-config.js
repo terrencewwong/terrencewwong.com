@@ -1,6 +1,4 @@
 module.exports = {
-  // Note: it must *not* have a trailing slash.
-  pathPrefix: `/blog`,
   siteMetadata: {
     title: `Gatsby Default Starter`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
