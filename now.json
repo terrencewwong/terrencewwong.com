@@ -1,6 +1,7 @@
 {
   "version": 2,
   "alias": ["www.terrencewwong.com"],
+  "builds": [{ "src": "index.html", "use": "@now/static" }],
   "routes": [
     {
       "src": "/(.*)",
