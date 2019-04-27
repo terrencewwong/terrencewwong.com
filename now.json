@@ -1,12 +1,5 @@
 {
   "version": 2,
-  "alias": ["www.terrencewwong.com"],
-  "builds": [{ "src": "index.html", "use": "@now/static" }],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "status": 301,
-      "headers": { "Location": "https://terrencewwong.com/$1" }
-    }
-  ]
+  "alias": ["terrencewwong.com"],
+  "builds": [{ "src": "index.html", "use": "@now/static" }]
 }
