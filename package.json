@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "workspaces": [
+    "blog"
+  ],
+  "lint-staged": {
+    "*.{js,html,json,md,mdx,scss,yaml}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "lint-staged": "^8.1.5",
+    "prettier": "^1.17.0"
+  }
+}
