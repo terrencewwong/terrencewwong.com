@@ -1,1 +1,11 @@
-{}
+{
+  "version": 2,
+  "alias": ["www.terrencewwong.com"],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "status": 301,
+      "headers": { "Location": "https://terrencewwong.com/$1" }
+    }
+  ]
+}
