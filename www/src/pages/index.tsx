@@ -18,13 +18,12 @@ const IndexPage = () => (
     <SEO title="Home" />
     <div
       css={css`
-        width: 192px;
         margin-bottom: 16px;
       `}
     >
       <TerrenceWongPhoto />
     </div>
-    <h1>Terrence Wong</h1>
+    <h1>terrence wong</h1>
     <ul
       css={css`
         list-style: none;
@@ -33,10 +32,6 @@ const IndexPage = () => (
         li:not(:last-child) {
           margin-right: 16px;
         }
-
-        a {
-          text-decoration: none;
-        }
       `}
     >
       <li>
@@ -44,7 +39,7 @@ const IndexPage = () => (
           <span role="img" aria-label="Twitter">
             🐤
           </span>{" "}
-          Twitter
+          twitter
         </a>
       </li>
       <li>
@@ -52,7 +47,7 @@ const IndexPage = () => (
           <span role="img" aria-label="GitHub">
             🐙
           </span>{" "}
-          GitHub
+          github
         </a>
       </li>
       <li>
@@ -60,7 +55,7 @@ const IndexPage = () => (
           <span role="img" aria-label="Blog">
             ✏️
           </span>{" "}
-          Blog
+          blog
         </Link>
       </li>
     </ul>
