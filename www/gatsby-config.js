@@ -5,8 +5,15 @@ module.exports = {
     author: `@gatsbyjs`
   },
   plugins: [
+    `gatsby-plugin-emotion`,
     `gatsby-plugin-typescript`,
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: `src/utils/typography`
+      }
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
