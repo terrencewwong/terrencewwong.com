@@ -26,7 +26,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
+    "build": "gatsby build --prefix-paths",
     "now-build": "yarn build",
     "develop": "gatsby develop",
     "format": "prettier --write src/**/*.{js,jsx}",
