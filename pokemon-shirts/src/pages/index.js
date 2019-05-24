@@ -1,5 +1,6 @@
 import React from "react";
 import Img from "gatsby-image";
+import Cross from "../components/Cross";
 import pokemon from "./pokemon.json";
 import "./styles.css";
 
@@ -38,12 +39,17 @@ const IndexPage = ({ data }) => {
         ))}
       </div>
       {current && (
-        <div id="js-modal" className="modal">
-          <div className="large-pokemon">
-            <Img
-              fixed={current.image.fixed}
-              style={{ width: "70vh", height: "70vh" }}
-            />
+        <div id="js-modal" className="modal z-index-1">
+          <div className="large-pokemon position-relative">
+            <button className="modal__close position-absolute top-right-corner z-index-1">
+              <Cross
+                className="cross"
+                width={32}
+                height={32}
+                onClick={() => setCurrentImage(null)}
+              />
+            </button>
+            <Img fixed={current.image.fixed} className="large-pokemon__image" />
             <h3>{current.name}</h3>
           </div>
         </div>

@@ -35,12 +35,58 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.position-absolute {
+  position: absolute;
+}
+
+.top-right-corner {
+  top: 4px;
+  right: 4px;
+}
+
+.z-index-1 {
   z-index: 1;
+}
+
+.modal__close {
+  height: 32px;
+  background: rgba(255, 255, 255, 0.75);
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  color: #555;
+  transition: color 0.1s linear;
+}
+
+.modal__close:hover {
+  color: black;
 }
 
 .large-pokemon {
   background-color: white;
   text-align: center;
+}
+
+@media screen and (orientation: landscape) {
+  .large-pokemon__image {
+    max-width: 80vh;
+    max-height: 80vh;
+  }
+}
+
+@media screen and (orientation: portrait) {
+  .large-pokemon__image {
+    max-width: 80vw;
+    max-height: 80vw;
+  }
 }
 
 .text-align-center {
