@@ -1,7 +1,8 @@
 {
   "private": true,
   "workspaces": [
-    "www"
+    "www",
+    "pokemon-shirts"
   ],
   "lint-staged": {
     "*.{js,html,json,md,mdx,scss,yaml}": [
