@@ -6,6 +6,11 @@
       "src": "www/package.json",
       "use": "@now/static-build",
       "config": { "distDir": "public" }
+    },
+    {
+      "src": "pokemon-shirts/package.json",
+      "use": "@now/static-build",
+      "config": { "distDir": "public" }
     }
   ],
   "routes": [{ "src": "/(.*)", "dest": "/www/$1" }]

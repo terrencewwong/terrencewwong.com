@@ -1,11 +1,11 @@
 import React from "react";
-import { Link } from "gatsby";
+import { Link, graphql } from "gatsby";
 import { css } from "@emotion/core";
 
 import TerrenceWongPhoto from "../components/TerrenceWongPhoto";
 import SEO from "../components/seo";
 
-const IndexPage = () => (
+const IndexPage = ({ data }) => (
   <div>
     <SEO title="Blog" />
     <aside
@@ -31,49 +31,51 @@ const IndexPage = () => (
       </div>
     </aside>
     <main>
-      <article
-        css={css`
-          margin-bottom: 48px;
-        `}
-      >
-        <header
+      {data.blogPosts.edges.map(({ node }) => (
+        <article
           css={css`
-            h2 {
-              margin-bottom: 4px;
-            }
+            margin-bottom: 48px;
           `}
+          key={node.id}
         >
-          <h2>
-            <Link to="/react-context-hooks-and-rerenders">
-              react context, hooks, and rerenders
-            </Link>
-          </h2>
-          <small>april 28</small>
-        </header>
-        <p>tldr: memoize the value passed to the provider</p>
-      </article>
-
-      <article
-        css={css`
-          margin-bottom: 48px;
-        `}
-      >
-        <header
-          css={css`
-            h2 {
-              margin-bottom: 4px;
-            }
-          `}
-        >
-          <h2>
-            <Link to="/learning-french">learning french</Link>
-          </h2>
-          <small>march 12</small>
-        </header>
-        <p>learning french with a slackbot</p>
-      </article>
+          <header
+            css={css`
+              h2 {
+                margin-bottom: 4px;
+              }
+            `}
+          >
+            <h2>
+              <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
+            </h2>
+            <small>{node.frontmatter.date}</small>
+          </header>
+          <p>{node.frontmatter.description}</p>
+        </article>
+      ))}
     </main>
   </div>
 );
-
 export default IndexPage;
+
+export const query = graphql`
+  query {
+    blogPosts: allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
+      edges {
+        node {
+          id
+          frontmatter {
+            description
+            title
+            date(formatString: "MMM DD")
+          }
+          fields {
+            slug
+          }
+        }
+      }
+    }
+  }
+`;

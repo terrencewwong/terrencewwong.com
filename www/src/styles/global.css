@@ -3,6 +3,7 @@ body {
   padding: 2rem;
   margin: auto;
   background: #fafafa;
+  text-transform: lowercase;
 }
 img {
   max-width: 100%;
