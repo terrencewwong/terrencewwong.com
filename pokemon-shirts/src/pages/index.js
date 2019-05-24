@@ -1,25 +1,54 @@
 import React from "react";
 import Img from "gatsby-image";
-
 import pokemon from "./pokemon.json";
-
-const fontFamily =
-  '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+import "./styles.css";
 
 const IndexPage = ({ data }) => {
+  const [current, setCurrentImage] = React.useState(null);
+  React.useEffect(() => {
+    const listener = document.body.addEventListener("click", e => {
+      if (e.target.id === "js-modal") setCurrentImage(null);
+    });
+    return () => document.body.removeEventListener("click", listener);
+  }, []);
+
   const nodes = data.allImageSharp.nodes.sort((a, b) =>
     a.parent.name < b.parent.name ? -1 : 1
   );
 
   return (
-    <div style={{ display: "flex", flexWrap: "wrap" }}>
-      {nodes.map((n, index) => (
-        <div style={{ textAlign: "center", padding: "16px" }}>
-          <Img id={n.id} fixed={n.fixed} style={{ width: 400, height: 400 }} />
-          <div style={{ fontFamily }}>{pokemon[index]}</div>
+    <>
+      <div className="text-align-center">
+        <h1>Pokemon Shirts</h1>
+        <p>
+          order from{" "}
+          <a href="https://originalstitch.com/pokemon">Original Stitch</a>
+        </p>
+      </div>
+      <div className="container">
+        {nodes.map((n, index) => (
+          <div
+            key={n.id}
+            className="pokemon text-align-center"
+            onClick={() => setCurrentImage({ image: n, name: pokemon[index] })}
+          >
+            <Img fixed={n.fixed} style={{ width: 200, height: 200 }} />
+            <div>{pokemon[index]}</div>
+          </div>
+        ))}
+      </div>
+      {current && (
+        <div id="js-modal" className="modal">
+          <div className="large-pokemon">
+            <Img
+              fixed={current.image.fixed}
+              style={{ width: "70vh", height: "70vh" }}
+            />
+            <h3>{current.name}</h3>
+          </div>
         </div>
-      ))}
-    </div>
+      )}
+    </>
   );
 };
 
