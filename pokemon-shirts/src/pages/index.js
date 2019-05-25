@@ -75,16 +75,18 @@ const IndexPage = ({ data }) => {
       </div>
       <div className="container">
         {images.map((image, index) => (
-          <div
-            key={image.pattern.id}
-            className="pokemon text-align-center"
-            onClick={() => setSelectedIndex(index)}
-          >
-            <ImageSet
-              initialImage={image.pattern}
-              hoverImage={image.shirt}
-              style={{ width: 200, height: 200 }}
-            />
+          <div className="text-align-center p-16">
+            <div
+              key={image.pattern.id}
+              className="pokemon"
+              onClick={() => setSelectedIndex(index)}
+            >
+              <ImageSet
+                initialImage={image.pattern}
+                hoverImage={image.shirt}
+                style={{ width: 200, height: 200 }}
+              />
+            </div>
             <h5>{pokemon[index]}</h5>
           </div>
         ))}

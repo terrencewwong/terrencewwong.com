@@ -15,8 +15,11 @@ body {
   justify-content: space-around;
 }
 
-.pokemon {
+.p-16 {
   padding: 16px;
+}
+
+.pokemon {
   border-radius: 2px;
   cursor: pointer;
   transition: box-shadow 0.1s linear;
