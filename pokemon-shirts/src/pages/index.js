@@ -29,6 +29,14 @@ const IndexPage = ({ data }) => {
       document.body.removeEventListener("keydown", keypressListener);
     };
   }, []);
+  React.useEffect(() => {
+    const parsedUrl = new URL(window.location.href);
+    const selectedPokemon = parsedUrl.searchParams.get("pokemon");
+    const index = pokemon.indexOf(selectedPokemon);
+    if (typeof index === "number") {
+      setSelectedIndex(index);
+    }
+  }, []);
 
   const nodes = data.allImageSharp.nodes.sort((a, b) =>
     a.parent.name < b.parent.name ? -1 : 1
