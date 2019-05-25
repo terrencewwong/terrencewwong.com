@@ -33,7 +33,7 @@ const IndexPage = ({ data }) => {
     const parsedUrl = new URL(window.location.href);
     const selectedPokemon = parsedUrl.searchParams.get("pokemon");
     const index = pokemon.indexOf(selectedPokemon);
-    if (typeof index === "number") {
+    if (index >= 0) {
       setSelectedIndex(index);
     }
   }, []);
