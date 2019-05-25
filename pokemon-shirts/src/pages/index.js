@@ -115,9 +115,17 @@ const IndexPage = ({ data }) => {
                 onClick={() => setSelectedIndex(mod(selectedIndex + 1, 151))}
               />
             </button>
-            <Img
-              fixed={images[selectedIndex].shirt.fixed}
-              className="large-pokemon__image"
+            <Gallery
+              images={[
+                images[selectedIndex].shirt,
+                images[selectedIndex].pattern
+              ]}
+              style={{
+                width: "541px",
+                height: "541px",
+                maxWidth: "80vw",
+                maxHeight: "80vw"
+              }}
             />
             <h3>{pokemon[selectedIndex]}</h3>
           </div>
@@ -153,14 +161,44 @@ export const query = graphql`
   }
 `;
 
-function ImageSet({ className, initialImage, hoverImage, ...props }) {
+function ImageSet({ initialImage, hoverImage, ...props }) {
   return (
-    <div className={["ImageSet", className].join(" ")} {...props}>
-      <div className="ImageSet__image-container">
+    <div className="position-relative" {...props}>
+      <div className="ImageSet__image-container position-absolute top-0">
         <Img fixed={hoverImage.fixed} {...props} />
       </div>
-      <div className="ImageSet__image-container initialImage">
+      <div className="ImageSet__image-container initialImage position-absolute top-0">
         <Img fixed={initialImage.fixed} {...props} />
+      </div>
+    </div>
+  );
+}
+
+function Gallery({ images, ...props }) {
+  const [selected, setSelected] = React.useState(0);
+  return (
+    <div className="position-relative" {...props}>
+      {images.map((image, i) => (
+        <div
+          key={image.id}
+          className={
+            "ImageSet__image-container position-absolute top-0" +
+            (i === selected ? " opacity-1" : " opacity-0")
+          }
+        >
+          <Img fixed={image.fixed} {...props} />
+        </div>
+      ))}
+      <div className="Gallery__buttons">
+        {images.map((image, i) => (
+          <button
+            className={
+              "minimal-button minimal-button-circle" +
+              (i === selected ? " selected" : "")
+            }
+            onClick={() => setSelected(i)}
+          />
+        ))}
       </div>
     </div>
   );

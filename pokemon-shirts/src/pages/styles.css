@@ -48,6 +48,10 @@ body {
   position: absolute;
 }
 
+.top-0 {
+  top: 0;
+}
+
 .top-right-corner {
   top: 4px;
   right: 4px;
@@ -81,12 +85,24 @@ body {
   outline: none;
   cursor: pointer;
   color: rgba(255, 255, 255, 0.5);
-  transition: color 0.1s linear;
+  transition: all 0.1s linear;
 }
 
 .minimal-button-secondary {
   background: rgba(255, 255, 255, 0.75);
   color: rgba(0, 0, 0, 0.5);
+}
+
+.minimal-button-circle {
+  margin: 4px 8px;
+  background: rgba(0, 0, 0, 0.25);
+  width: 16px;
+  height: 16px;
+}
+
+.selected,
+.minimal-button-circle:hover {
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .modal__close:hover {
@@ -98,34 +114,30 @@ body {
   text-align: center;
 }
 
-@media screen and (orientation: landscape) {
-  .large-pokemon__image {
-    max-width: 80vh;
-    max-height: 80vh;
-  }
-}
-
-@media screen and (orientation: portrait) {
-  .large-pokemon__image {
-    max-width: 80vw;
-    max-height: 80vw;
-  }
-}
-
 .text-align-center {
   text-align: center;
 }
 
-.ImageSet {
-  position: relative;
-}
-
-.ImageSet .ImageSet__image-container {
-  position: absolute;
-  left: 0;
+.ImageSet__image-container {
   transition: opacity 0.4s ease-in-out;
 }
 
 .initialImage:hover {
   opacity: 0;
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.opacity-1 {
+  opacity: 1;
+}
+
+.Gallery__buttons {
+  width: 100%;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  justify-content: center;
 }
