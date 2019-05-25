@@ -46,7 +46,11 @@ const IndexPage = ({ data }) => {
       if (selectedPokemon && searchParamsPokemon !== selectedPokemon) {
         searchParams.set("pokemon", selectedPokemon);
         // eslint-disable-next-line no-restricted-globals
-        history.pushState(null, "", "/?" + searchParams.toString());
+        history.pushState(
+          null,
+          "",
+          window.location.pathname + "?" + searchParams.toString()
+        );
       }
     }
   }, [selectedIndex]);
