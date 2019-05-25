@@ -50,20 +50,40 @@ body {
   right: 4px;
 }
 
+.middle {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.left {
+  left: -36px;
+}
+
+.right {
+  right: -36px;
+}
+
 .z-index-1 {
   z-index: 1;
 }
 
-.modal__close {
+.minimal-button {
   height: 32px;
-  background: rgba(255, 255, 255, 0.75);
+  background: none;
   padding: 0;
   border: none;
   border-radius: 50%;
   outline: none;
   cursor: pointer;
-  color: #555;
+  color: rgba(255, 255, 255, 0.5);
   transition: color 0.1s linear;
+}
+
+.minimal-button-secondary {
+  background: rgba(255, 255, 255, 0.75);
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .modal__close:hover {

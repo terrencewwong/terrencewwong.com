@@ -1,16 +1,33 @@
 import React from "react";
 import Img from "gatsby-image";
 import Cross from "../components/Cross";
+import ArrowBack from "../components/ArrowBack";
+import ArrowForward from "../components/ArrowForward";
 import pokemon from "./pokemon.json";
 import "./styles.css";
 
 const IndexPage = ({ data }) => {
-  const [current, setCurrentImage] = React.useState(null);
+  const [selectedIndex, setSelectedIndex] = React.useState(null);
   React.useEffect(() => {
     const listener = document.body.addEventListener("click", e => {
-      if (e.target.id === "js-modal") setCurrentImage(null);
+      if (e.target.id === "js-modal") setSelectedIndex(null);
     });
-    return () => document.body.removeEventListener("click", listener);
+    const keypressListener = document.body.addEventListener("keydown", e => {
+      if (e.keyCode === 37) {
+        // left
+        setSelectedIndex(index => mod(index - 1, 151));
+      } else if (e.keyCode === 39) {
+        // right
+        setSelectedIndex(index => mod(index + 1, 151));
+      } else if (e.keyCode === 27) {
+        // esc
+        setSelectedIndex(null);
+      }
+    });
+    return () => {
+      document.body.removeEventListener("click", listener);
+      document.body.removeEventListener("keydown", keypressListener);
+    };
   }, []);
 
   const nodes = data.allImageSharp.nodes.sort((a, b) =>
@@ -31,26 +48,42 @@ const IndexPage = ({ data }) => {
           <div
             key={n.id}
             className="pokemon text-align-center"
-            onClick={() => setCurrentImage({ image: n, name: pokemon[index] })}
+            onClick={() => setSelectedIndex(index)}
           >
             <Img fixed={n.fixed} style={{ width: 200, height: 200 }} />
             <div>{pokemon[index]}</div>
           </div>
         ))}
       </div>
-      {current && (
+      {selectedIndex !== null && (
         <div id="js-modal" className="modal z-index-1">
           <div className="large-pokemon position-relative">
-            <button className="modal__close position-absolute top-right-corner z-index-1">
+            <button className="minimal-button minimal-button-secondary position-absolute top-right-corner z-index-1">
               <Cross
-                className="cross"
                 width={32}
                 height={32}
-                onClick={() => setCurrentImage(null)}
+                onClick={() => setSelectedIndex(null)}
               />
             </button>
-            <Img fixed={current.image.fixed} className="large-pokemon__image" />
-            <h3>{current.name}</h3>
+            <button className="minimal-button position-absolute middle left z-index-1">
+              <ArrowBack
+                width={32}
+                height={32}
+                onClick={() => setSelectedIndex(mod(selectedIndex - 1, 151))}
+              />
+            </button>
+            <button className="minimal-button position-absolute middle right z-index-1">
+              <ArrowForward
+                width={32}
+                height={32}
+                onClick={() => setSelectedIndex(mod(selectedIndex + 1, 151))}
+              />
+            </button>
+            <Img
+              fixed={nodes[selectedIndex].fixed}
+              className="large-pokemon__image"
+            />
+            <h3>{pokemon[selectedIndex]}</h3>
           </div>
         </div>
       )}
@@ -83,3 +116,7 @@ export const query = graphql`
     }
   }
 `;
+
+function mod(a, b) {
+  return ((a % b) + b) % b;
+}
