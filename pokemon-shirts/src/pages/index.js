@@ -37,6 +37,19 @@ const IndexPage = ({ data }) => {
       setSelectedIndex(index);
     }
   }, []);
+  React.useEffect(() => {
+    // eslint-disable-next-line no-restricted-globals
+    if (typeof history !== "undefined") {
+      const searchParams = new URLSearchParams(window.location.search);
+      const searchParamsPokemon = searchParams.get("pokemon");
+      const selectedPokemon = pokemon[selectedIndex];
+      if (selectedPokemon && searchParamsPokemon !== selectedPokemon) {
+        searchParams.set("pokemon", selectedPokemon);
+        // eslint-disable-next-line no-restricted-globals
+        history.pushState(null, "", "/?" + searchParams.toString());
+      }
+    }
+  }, [selectedIndex]);
 
   const nodes = data.allImageSharp.nodes.sort((a, b) =>
     a.parent.name < b.parent.name ? -1 : 1
