@@ -112,3 +112,17 @@ body {
 .text-align-center {
   text-align: center;
 }
+
+.ImageSet {
+  position: relative;
+}
+
+.ImageSet .ImageSet__image-container {
+  position: absolute;
+  left: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.initialImage:hover {
+  opacity: 0;
+}

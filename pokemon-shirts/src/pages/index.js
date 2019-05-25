@@ -51,9 +51,18 @@ const IndexPage = ({ data }) => {
     }
   }, [selectedIndex]);
 
-  const nodes = data.allImageSharp.nodes.sort((a, b) =>
+  // relies on the fact that the file names follow the convention
+  // 001-pattern.jpg, 001-shirt.png, 002-pattern.jpg, etc.
+  const sorted = data.allImageSharp.nodes.sort((a, b) =>
     a.parent.name < b.parent.name ? -1 : 1
   );
+  const images = [];
+  for (let i = 0; i < pokemon.length; i++) {
+    images[i] = {
+      pattern: sorted[2 * i],
+      shirt: sorted[2 * i + 1]
+    };
+  }
 
   return (
     <>
@@ -65,14 +74,18 @@ const IndexPage = ({ data }) => {
         </p>
       </div>
       <div className="container">
-        {nodes.map((n, index) => (
+        {images.map((image, index) => (
           <div
-            key={n.id}
+            key={image.pattern.id}
             className="pokemon text-align-center"
             onClick={() => setSelectedIndex(index)}
           >
-            <Img fixed={n.fixed} style={{ width: 200, height: 200 }} />
-            <div>{pokemon[index]}</div>
+            <ImageSet
+              initialImage={image.pattern}
+              hoverImage={image.shirt}
+              style={{ width: 200, height: 200 }}
+            />
+            <h5>{pokemon[index]}</h5>
           </div>
         ))}
       </div>
@@ -101,7 +114,7 @@ const IndexPage = ({ data }) => {
               />
             </button>
             <Img
-              fixed={nodes[selectedIndex].fixed}
+              fixed={images[selectedIndex].shirt.fixed}
               className="large-pokemon__image"
             />
             <h3>{pokemon[selectedIndex]}</h3>
@@ -137,6 +150,19 @@ export const query = graphql`
     }
   }
 `;
+
+function ImageSet({ className, initialImage, hoverImage, ...props }) {
+  return (
+    <div className={["ImageSet", className].join(" ")} {...props}>
+      <div className="ImageSet__image-container">
+        <Img fixed={hoverImage.fixed} {...props} />
+      </div>
+      <div className="ImageSet__image-container initialImage">
+        <Img fixed={initialImage.fixed} {...props} />
+      </div>
+    </div>
+  );
+}
 
 function mod(a, b) {
   return ((a % b) + b) % b;
