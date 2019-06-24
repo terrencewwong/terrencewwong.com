@@ -11,7 +11,14 @@
       "src": "pokemon-shirts/package.json",
       "use": "@now/static-build",
       "config": { "distDir": "public" }
+    },
+    {
+      "src": "learn-french/slack/*.js",
+      "use": "@now/node"
     }
   ],
-  "routes": [{ "src": "/(.*)", "dest": "/www/$1" }]
+  "routes": [
+    { "src": "/(.*)", "dest": "/www/$1" },
+    { "src": "/learn-french/slack/(.*)", "dest": "/learn-french/slack/$1.js" }
+  ]
 }

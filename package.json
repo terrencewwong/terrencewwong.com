@@ -2,7 +2,8 @@
   "private": true,
   "workspaces": [
     "www",
-    "pokemon-shirts"
+    "pokemon-shirts",
+    "learn-french/slack"
   ],
   "lint-staged": {
     "*.{js,html,json,md,mdx,scss,yaml}": [
