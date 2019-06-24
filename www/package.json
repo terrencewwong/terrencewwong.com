@@ -36,6 +36,7 @@
     "build": "gatsby build --prefix-paths",
     "now-build": "yarn run build",
     "develop": "gatsby develop",
+    "now-dev": "gatsby develop -p $PORT",
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "yarn run develop",
     "serve": "gatsby serve",

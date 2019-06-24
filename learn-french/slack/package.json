@@ -1,0 +1,12 @@
+{
+  "name": "learn-french",
+  "version": "1.0.0",
+  "main": "action-endpoint.js",
+  "scripts": {
+    "dev": "micro-dev"
+  },
+  "devDependencies": {
+    "micro": "^9.3.4",
+    "micro-dev": "^3.0.0"
+  }
+}

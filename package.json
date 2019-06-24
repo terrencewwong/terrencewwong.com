@@ -2,7 +2,8 @@
   "private": true,
   "workspaces": [
     "www",
-    "pokemon-shirts"
+    "pokemon-shirts",
+    "learn-french/slack"
   ],
   "lint-staged": {
     "*.{js,html,json,md,mdx,scss,yaml}": [
@@ -11,6 +12,9 @@
     ]
   },
   "devDependencies": {
+    "@commitlint/cli": "^8.0.0",
+    "@commitlint/config-conventional": "^8.0.0",
+    "husky": "^2.5.0",
     "lint-staged": "^8.1.5",
     "prettier": "^1.17.0"
   }
