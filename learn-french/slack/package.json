@@ -8,5 +8,8 @@
   "devDependencies": {
     "micro": "^9.3.4",
     "micro-dev": "^3.0.0"
+  },
+  "dependencies": {
+    "@slack/web-api": "^5.0.1"
   }
 }
